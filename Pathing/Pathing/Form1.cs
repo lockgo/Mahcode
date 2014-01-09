@@ -182,28 +182,37 @@ namespace Pathing
             }
             Console.WriteLine(result); // <-- For debugging use.
             textBox1.Text = saveSessions.FileName;
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@saveSessions.FileName, true))
+            if (result.Equals(true))
             {
-                Session save_Session = Pathlist[listSessions.SelectedIndex];
+                using (System.IO.StreamWriter file = new System.IO.StreamWriter(@saveSessions.FileName, true))
+                {
+                    Session save_Session = Pathlist[listSessions.SelectedIndex];
 
-                file.WriteLine(pathObject.Cid.ToString() + ": Name-" + textName.Text + " AC-" + textClass.Text + " HP-" + textHealth.Text + " AC-" + textAC.Text + " F-" + textForitude.Text + " R-" + textReflex.Text + " W-" + textWill.Text + " Base-" + textBaseAttack.Text + " Str-" + textStr.Text + " Dex-" + textDex.Text + " Con-" + textCon.Text + " Int-" + textInt.Text + " Wis-" + textWis.Text + " Cha-" + textCha.Text + " Ini-" + textIniative.Text + " HD-" + textHD.Text + " CMB-" + textCMB.Text + " CMD-" + textCMD.Text);
-                file.WriteLine(" " + save_Session.Name);
-                file.WriteLine(" " + save_Session.Class);
-                file.WriteLine(" " + save_Session.Health);
-                file.WriteLine(" " + save_Session.ArmorClass);
-                file.WriteLine(" " + save_Session.Foritude);
-                file.WriteLine(" " + save_Session.Reflex);
-                file.WriteLine(" " + save_Session.Will);
-                file.WriteLine(" " + save_Session.BaseAttack);
-                file.WriteLine(" " + save_Session.Str);
-                file.WriteLine(" " + save_Session.Dex);
-                file.WriteLine(" " + save_Session.Con);
-                file.WriteLine(" " + save_Session.Int);
-                file.WriteLine(" " + save_Session.Wis);
-                file.WriteLine(" " + save_Session.Cha);
-                file.WriteLine(" " + save_Session.Initiative);
-                file.WriteLine(" " + save_Session.HD);
+                    file.WriteLine(pathObject.Cid.ToString() + ": Name-" + textName.Text + " AC-" + textClass.Text + " HP-" + textHealth.Text + " AC-" + textAC.Text + " F-" + textForitude.Text + " R-" + textReflex.Text + " W-" + textWill.Text + " Base-" + textBaseAttack.Text + " Str-" + textStr.Text + " Dex-" + textDex.Text + " Con-" + textCon.Text + " Int-" + textInt.Text + " Wis-" + textWis.Text + " Cha-" + textCha.Text + " Ini-" + textIniative.Text + " HD-" + textHD.Text + " CMB-" + textCMB.Text + " CMD-" + textCMD.Text);
+                    file.WriteLine(" " + save_Session.Name);
+                    file.WriteLine(" " + save_Session.Class);
+                    file.WriteLine(" " + save_Session.Health);
+                    file.WriteLine(" " + save_Session.ArmorClass);
+                    file.WriteLine(" " + save_Session.Foritude);
+                    file.WriteLine(" " + save_Session.Reflex);
+                    file.WriteLine(" " + save_Session.Will);
+                    file.WriteLine(" " + save_Session.BaseAttack);
+                    file.WriteLine(" " + save_Session.Str);
+                    file.WriteLine(" " + save_Session.Dex);
+                    file.WriteLine(" " + save_Session.Con);
+                    file.WriteLine(" " + save_Session.Int);
+                    file.WriteLine(" " + save_Session.Wis);
+                    file.WriteLine(" " + save_Session.Cha);
+                    file.WriteLine(" " + save_Session.Initiative);
+                    file.WriteLine(" " + save_Session.HD);
+                }
             }
+            else
+            {
+                textBox1.Text = "file not found";
+            }
+
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -232,11 +241,24 @@ namespace Pathing
             SortedList = Rollforinit;
 
             HeapSort(SortedList);
+            Random random = new Random();
+            for (int y = 0; y < SortedList.Count; y++)
+            {
+                SortedList[y].Iid = y + 1;
+
+                
+                int randomNumber = random.Next(1, 21);
+                string RanNumText = randomNumber.ToString();
+
+                SortedList[y].InitiativeValue += randomNumber;
+            }
 
             for (int i = 0; i < SortedList.Count; i++)
             {
                 listBox1.Items.Add(SortedList[i].Iid.ToString() + " -" + SortedList[i].iName + "- " + SortedList[i].InitiativeValue.ToString());
             }
+
+
 
             
         }
