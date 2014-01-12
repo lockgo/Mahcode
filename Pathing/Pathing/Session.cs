@@ -31,8 +31,7 @@ namespace Pathing
         public Int32 Initiative { get; set; }
         public Int32 HD { get; set; }
 
-
-        public String Email { get; set; }
+        public String Feats { get; set; }
         
 
     }

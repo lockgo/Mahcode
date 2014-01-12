@@ -29,10 +29,8 @@
         private void InitializeComponent()
         {
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.textName = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.listSessions = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -77,12 +75,27 @@
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openSessions = new System.Windows.Forms.OpenFileDialog();
             this.saveSessions = new System.Windows.Forms.SaveFileDialog();
-            this.button2 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.D20button = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.button4 = new System.Windows.Forms.Button();
+            this.richConsole = new System.Windows.Forms.RichTextBox();
+            this.D12button = new System.Windows.Forms.Button();
+            this.D10button = new System.Windows.Forms.Button();
+            this.D8button = new System.Windows.Forms.Button();
+            this.D6button = new System.Windows.Forms.Button();
+            this.D4button = new System.Windows.Forms.Button();
+            this.D3button = new System.Windows.Forms.Button();
+            this.Addbutton = new System.Windows.Forms.Button();
+            this.downbutton = new System.Windows.Forms.Button();
+            this.upbutton = new System.Windows.Forms.Button();
+            this.Rembutton = new System.Windows.Forms.Button();
+            this.textInitNum = new System.Windows.Forms.TextBox();
+            this.textInitName = new System.Windows.Forms.TextBox();
+            this.richFeatBox = new System.Windows.Forms.RichTextBox();
+            this.clearButton = new System.Windows.Forms.Button();
+            this.editButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -92,15 +105,6 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 0;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(12, 53);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 1;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // textName
             // 
@@ -116,18 +120,9 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 21;
-            this.button1.Text = "button1";
+            this.button1.Text = "Create";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(198, 61);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(30, 13);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Here";
             // 
             // listSessions
             // 
@@ -476,14 +471,14 @@
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
@@ -491,22 +486,15 @@
             // 
             this.openSessions.FileName = "openSessions";
             // 
-            // button2
+            // D20button
             // 
-            this.button2.Location = new System.Drawing.Point(12, 504);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(37, 23);
-            this.button2.TabIndex = 48;
-            this.button2.Text = "D20";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(12, 481);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(37, 20);
-            this.textBox2.TabIndex = 49;
+            this.D20button.Location = new System.Drawing.Point(12, 411);
+            this.D20button.Name = "D20button";
+            this.D20button.Size = new System.Drawing.Size(37, 23);
+            this.D20button.TabIndex = 48;
+            this.D20button.Text = "D20";
+            this.D20button.UseVisualStyleBackColor = true;
+            this.D20button.Click += new System.EventHandler(this.button2_Click);
             // 
             // textBox3
             // 
@@ -543,17 +531,181 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
+            // richConsole
+            // 
+            this.richConsole.Location = new System.Drawing.Point(498, 356);
+            this.richConsole.Name = "richConsole";
+            this.richConsole.Size = new System.Drawing.Size(226, 252);
+            this.richConsole.TabIndex = 54;
+            this.richConsole.Text = "";
+            // 
+            // D12button
+            // 
+            this.D12button.Location = new System.Drawing.Point(12, 440);
+            this.D12button.Name = "D12button";
+            this.D12button.Size = new System.Drawing.Size(37, 23);
+            this.D12button.TabIndex = 55;
+            this.D12button.Text = "D12";
+            this.D12button.UseVisualStyleBackColor = true;
+            this.D12button.Click += new System.EventHandler(this.D12button_Click);
+            // 
+            // D10button
+            // 
+            this.D10button.Location = new System.Drawing.Point(12, 469);
+            this.D10button.Name = "D10button";
+            this.D10button.Size = new System.Drawing.Size(37, 23);
+            this.D10button.TabIndex = 56;
+            this.D10button.Text = "D10";
+            this.D10button.UseVisualStyleBackColor = true;
+            this.D10button.Click += new System.EventHandler(this.D10button_Click);
+            // 
+            // D8button
+            // 
+            this.D8button.Location = new System.Drawing.Point(12, 498);
+            this.D8button.Name = "D8button";
+            this.D8button.Size = new System.Drawing.Size(37, 23);
+            this.D8button.TabIndex = 57;
+            this.D8button.Text = "D8";
+            this.D8button.UseVisualStyleBackColor = true;
+            this.D8button.Click += new System.EventHandler(this.D8button_Click);
+            // 
+            // D6button
+            // 
+            this.D6button.Location = new System.Drawing.Point(11, 527);
+            this.D6button.Name = "D6button";
+            this.D6button.Size = new System.Drawing.Size(37, 23);
+            this.D6button.TabIndex = 58;
+            this.D6button.Text = "D6";
+            this.D6button.UseVisualStyleBackColor = true;
+            this.D6button.Click += new System.EventHandler(this.D6button_Click);
+            // 
+            // D4button
+            // 
+            this.D4button.Location = new System.Drawing.Point(12, 556);
+            this.D4button.Name = "D4button";
+            this.D4button.Size = new System.Drawing.Size(37, 23);
+            this.D4button.TabIndex = 59;
+            this.D4button.Text = "D4";
+            this.D4button.UseVisualStyleBackColor = true;
+            this.D4button.Click += new System.EventHandler(this.D4button_Click);
+            // 
+            // D3button
+            // 
+            this.D3button.Location = new System.Drawing.Point(12, 585);
+            this.D3button.Name = "D3button";
+            this.D3button.Size = new System.Drawing.Size(37, 23);
+            this.D3button.TabIndex = 60;
+            this.D3button.Text = "D3";
+            this.D3button.UseVisualStyleBackColor = true;
+            this.D3button.Click += new System.EventHandler(this.D3button_Click);
+            // 
+            // Addbutton
+            // 
+            this.Addbutton.Location = new System.Drawing.Point(454, 27);
+            this.Addbutton.Name = "Addbutton";
+            this.Addbutton.Size = new System.Drawing.Size(38, 23);
+            this.Addbutton.TabIndex = 61;
+            this.Addbutton.Text = "Add";
+            this.Addbutton.UseVisualStyleBackColor = true;
+            this.Addbutton.Click += new System.EventHandler(this.Addbutton_Click);
+            // 
+            // downbutton
+            // 
+            this.downbutton.Location = new System.Drawing.Point(436, 128);
+            this.downbutton.Name = "downbutton";
+            this.downbutton.Size = new System.Drawing.Size(56, 23);
+            this.downbutton.TabIndex = 63;
+            this.downbutton.Text = "Down";
+            this.downbutton.UseVisualStyleBackColor = true;
+            this.downbutton.Click += new System.EventHandler(this.downbutton_Click);
+            // 
+            // upbutton
+            // 
+            this.upbutton.Location = new System.Drawing.Point(392, 128);
+            this.upbutton.Name = "upbutton";
+            this.upbutton.Size = new System.Drawing.Size(38, 23);
+            this.upbutton.TabIndex = 64;
+            this.upbutton.Text = "Up";
+            this.upbutton.UseVisualStyleBackColor = true;
+            this.upbutton.Click += new System.EventHandler(this.upbutton_Click);
+            // 
+            // Rembutton
+            // 
+            this.Rembutton.Location = new System.Drawing.Point(410, 27);
+            this.Rembutton.Name = "Rembutton";
+            this.Rembutton.Size = new System.Drawing.Size(38, 23);
+            this.Rembutton.TabIndex = 62;
+            this.Rembutton.Text = "Rev";
+            this.Rembutton.UseVisualStyleBackColor = true;
+            this.Rembutton.Click += new System.EventHandler(this.Rembutton_Click);
+            // 
+            // textInitNum
+            // 
+            this.textInitNum.Location = new System.Drawing.Point(454, 53);
+            this.textInitNum.Name = "textInitNum";
+            this.textInitNum.Size = new System.Drawing.Size(38, 20);
+            this.textInitNum.TabIndex = 65;
+            // 
+            // textInitName
+            // 
+            this.textInitName.Location = new System.Drawing.Point(410, 53);
+            this.textInitName.Name = "textInitName";
+            this.textInitName.Size = new System.Drawing.Size(38, 20);
+            this.textInitName.TabIndex = 66;
+            // 
+            // richFeatBox
+            // 
+            this.richFeatBox.Location = new System.Drawing.Point(118, 358);
+            this.richFeatBox.Name = "richFeatBox";
+            this.richFeatBox.Size = new System.Drawing.Size(226, 252);
+            this.richFeatBox.TabIndex = 67;
+            this.richFeatBox.Text = "";
+            // 
+            // clearButton
+            // 
+            this.clearButton.Location = new System.Drawing.Point(436, 180);
+            this.clearButton.Name = "clearButton";
+            this.clearButton.Size = new System.Drawing.Size(56, 23);
+            this.clearButton.TabIndex = 68;
+            this.clearButton.Text = "Clear";
+            this.clearButton.UseVisualStyleBackColor = true;
+            this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
+            // 
+            // editButton
+            // 
+            this.editButton.Location = new System.Drawing.Point(350, 358);
+            this.editButton.Name = "editButton";
+            this.editButton.Size = new System.Drawing.Size(75, 23);
+            this.editButton.TabIndex = 69;
+            this.editButton.Text = "Edit";
+            this.editButton.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(804, 539);
+            this.ClientSize = new System.Drawing.Size(804, 614);
+            this.Controls.Add(this.editButton);
+            this.Controls.Add(this.clearButton);
+            this.Controls.Add(this.richFeatBox);
+            this.Controls.Add(this.textInitName);
+            this.Controls.Add(this.textInitNum);
+            this.Controls.Add(this.upbutton);
+            this.Controls.Add(this.downbutton);
+            this.Controls.Add(this.Rembutton);
+            this.Controls.Add(this.Addbutton);
+            this.Controls.Add(this.D3button);
+            this.Controls.Add(this.D4button);
+            this.Controls.Add(this.D6button);
+            this.Controls.Add(this.D8button);
+            this.Controls.Add(this.D10button);
+            this.Controls.Add(this.D12button);
+            this.Controls.Add(this.richConsole);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.D20button);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.textCMB);
             this.Controls.Add(this.label20);
@@ -592,10 +744,8 @@
             this.Controls.Add(this.textClass);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.listSessions);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textName);
-            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -611,11 +761,9 @@
         #endregion
 
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.TextBox textName;
         private System.Windows.Forms.TextBox textClass;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListBox listSessions;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -659,12 +807,27 @@
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openSessions;
         private System.Windows.Forms.SaveFileDialog saveSessions;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Button D20button;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.RichTextBox richConsole;
+        private System.Windows.Forms.Button D12button;
+        private System.Windows.Forms.Button D10button;
+        private System.Windows.Forms.Button D8button;
+        private System.Windows.Forms.Button D6button;
+        private System.Windows.Forms.Button D4button;
+        private System.Windows.Forms.Button D3button;
+        private System.Windows.Forms.Button Addbutton;
+        private System.Windows.Forms.Button downbutton;
+        private System.Windows.Forms.Button upbutton;
+        private System.Windows.Forms.Button Rembutton;
+        private System.Windows.Forms.TextBox textInitNum;
+        private System.Windows.Forms.TextBox textInitName;
+        private System.Windows.Forms.RichTextBox richFeatBox;
+        private System.Windows.Forms.Button clearButton;
+        private System.Windows.Forms.Button editButton;
     }
 }
 
