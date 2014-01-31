@@ -97,7 +97,7 @@ namespace Pathing
             //textBox1.Text = listSessions.SelectedIndex.ToString();
             Session load_Session;
 
-            if(listSessions.SelectedIndex >= 0)//somehow SelectedIndex could be less then 0.
+            if (listSessions.SelectedIndex >= 0 && listSessions.SelectedIndex <= Pathlist.Capacity)//somehow SelectedIndex could be less then 0.
             {
                 load_Session = Pathlist[listSessions.SelectedIndex];
             }
@@ -496,6 +496,46 @@ namespace Pathing
             SortedList = new List<Initiative>();
             SortedList.Clear();
             listBox1.Items.Clear();
+        }
+
+        private void editButton_Click(object sender, EventArgs e)
+        {
+
+            Session edit_Session = new Session();
+
+            edit_Session = making_a_sesstion(pathObject.Cid, textName.Text, textClass.Text, Convert.ToInt32(textHealth.Text), Convert.ToInt32(textAC.Text), Convert.ToInt32(textForitude.Text), Convert.ToInt32(textReflex.Text), Convert.ToInt32(textWill.Text), Convert.ToInt32(textBaseAttack.Text), Convert.ToInt32(textStr.Text), Convert.ToInt32(textDex.Text), Convert.ToInt32(textInt.Text), Convert.ToInt32(textWis.Text), Convert.ToInt32(textCha.Text), Convert.ToInt32(textIniative.Text), Convert.ToInt32(textHD.Text), richFeatBox.Text);
+            richConsole.Text = Pathlist.Capacity.ToString();
+
+            if (listSessions.SelectedIndex >= 0 && listSessions.SelectedIndex <= Pathlist.Capacity)
+            {
+                int indextChanging = listSessions.SelectedIndex;
+                Pathlist[listSessions.SelectedIndex] = making_a_sesstion(pathObject.Cid, textName.Text, textClass.Text, Convert.ToInt32(textHealth.Text), Convert.ToInt32(textAC.Text), Convert.ToInt32(textForitude.Text), Convert.ToInt32(textReflex.Text), Convert.ToInt32(textWill.Text), Convert.ToInt32(textBaseAttack.Text), Convert.ToInt32(textStr.Text), Convert.ToInt32(textDex.Text), Convert.ToInt32(textInt.Text), Convert.ToInt32(textWis.Text), Convert.ToInt32(textCha.Text), Convert.ToInt32(textIniative.Text), Convert.ToInt32(textHD.Text), richFeatBox.Text);
+                //listSessions[indextChanging] = (pathObject.Cid, textName.Text, textClass.Text, Convert.ToInt32(textHealth.Text), Convert.ToInt32(textAC.Text), Convert.ToInt32(textForitude.Text), Convert.ToInt32(textReflex.Text), Convert.ToInt32(textWill.Text), Convert.ToInt32(textBaseAttack.Text), Convert.ToInt32(textStr.Text), Convert.ToInt32(textDex.Text), Convert.ToInt32(textInt.Text), Convert.ToInt32(textWis.Text), Convert.ToInt32(textCha.Text), Convert.ToInt32(textIniative.Text), Convert.ToInt32(textHD.Text), richFeatBox.Text);
+                //listSessions.Items.
+                //listSessions.SelectedValue = "lololol";
+                //textBox1.Text = listSessions.SelectedItem.ToString();
+                //List boxes are not easily edited. I could simply just make a clone of the listbox with the element I wanted edited already edited, and then place that as the new list box, but I am sure there is an easier way.
+            }
+            else
+            {
+                MessageBox.Show("You dun goofed");
+            }
+
+            textCMB.Text = Globalz.calcCMB(Convert.ToInt32(textBaseAttack.Text), Convert.ToInt32(textStr.Text)).ToString();
+            textCMD.Text = Globalz.calcCMD(Convert.ToInt32(textBaseAttack.Text), Convert.ToInt32(textStr.Text), Convert.ToInt32(textDex.Text)).ToString();
+
+            String sessionName = pathObject.Cid.ToString() + ": Name-" + textName.Text + " AC-" + textClass.Text + " HP-" + textHealth.Text + " AC-" + textAC.Text + " F-" + textForitude.Text + " R-" + textReflex.Text + " W-" + textWill.Text + " Base-" + textBaseAttack.Text + " Str-" + textStr.Text + " Dex-" + textDex.Text + " Con-" + textCon.Text + " Int-" + textInt.Text + " Wis-" + textWis.Text + " Cha-" + textCha.Text + " Ini-" + textIniative.Text + " HD-" + textHD.Text + " CMB-" + textCMB.Text + " CMD-" + textCMD.Text + " Feats-" + richFeatBox.Text;
+            //listSessions.Items.Add(sessionName);
+            //listSessions.Items(1) = "whata";
+            //ListBox temp = new ListBox();
+            //temp.Items.Add(sessionName);
+
+            //temp.Items.Add()
+
+            
+
+            Rollforinit.Add(making_a_Iniative(pathObject.Cid, textName.Text, pathObject.Initiative));
+
         }
 
 
