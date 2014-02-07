@@ -19,6 +19,7 @@ namespace Pathing
         List<Initiative> Rollforinit = new List<Initiative>();
 
         List<Initiative> SortedList = new List<Initiative>();
+        List<String> CharacterLists = new List<String>();
         public Form1()
         {
             pathObject.Cid = 0;
@@ -29,25 +30,174 @@ namespace Pathing
         private void button1_Click(object sender, EventArgs e)//Creates a session
         {//Stores everthing to the list and the Session object list
 
-            //comboBox1.Items.Add(textName.Text);
-            //listSessions.Items.Add(textName.Text);
-            pathObject.Cid = pathObject.Cid + 1;
-            pathObject.Name = textName.Text;
-            pathObject.Initiative = Convert.ToInt32(textIniative.Text);
-            //textBox1.Text = pathObject.Cid.ToString();
-            textBox1.Text = Pathlist.Capacity.ToString();
-            Pathlist.Add(making_a_sesstion(pathObject.Cid, textName.Text, textClass.Text, Convert.ToInt32(textHealth.Text), Convert.ToInt32(textAC.Text), Convert.ToInt32(textForitude.Text), Convert.ToInt32(textReflex.Text), Convert.ToInt32(textWill.Text), Convert.ToInt32(textBaseAttack.Text), Convert.ToInt32(textStr.Text), Convert.ToInt32(textDex.Text), Convert.ToInt32(textInt.Text), Convert.ToInt32(textWis.Text), Convert.ToInt32(textCha.Text), Convert.ToInt32(textIniative.Text), Convert.ToInt32(textHD.Text), richFeatBox.Text));
-            richConsole.Text = Pathlist.Capacity.ToString();
-            //textCMB.Text = (Convert.ToInt32(textBaseAttack.Text) + ((Convert.ToInt32(textStr.Text)-10)/2)).ToString();
-            //textCMD.Text = (Convert.ToInt32(textBaseAttack.Text) + ((Convert.ToInt32(textStr.Text) - 10) / 2) + 10 + ((Convert.ToInt32(textDex.Text) - 10) / 2)).ToString();
-            textCMB.Text = Globalz.calcCMB(Convert.ToInt32(textBaseAttack.Text), Convert.ToInt32(textStr.Text)).ToString();
-            textCMD.Text = Globalz.calcCMD(Convert.ToInt32(textBaseAttack.Text), Convert.ToInt32(textStr.Text), Convert.ToInt32(textDex.Text)).ToString();
+            Boolean addOrFail = checkTextboxes(pathObject.Cid, textName.Text, textClass.Text, textHealth.Text, textAC.Text, textForitude.Text, textReflex.Text, textWill.Text, textBaseAttack.Text, textStr.Text, textDex.Text, textInt.Text, textWis.Text, textCha.Text, textIniative.Text, textHD.Text, richFeatBox.Text, richSkillsBox.Text);
 
-            String sessionName = pathObject.Cid.ToString() + ": Name-" + textName.Text + " AC-" + textClass.Text + " HP-" + textHealth.Text + " AC-" + textAC.Text + " F-" + textForitude.Text + " R-" + textReflex.Text + " W-" + textWill.Text + " Base-" + textBaseAttack.Text + " Str-" + textStr.Text + " Dex-" + textDex.Text + " Con-" + textCon.Text + " Int-" + textInt.Text + " Wis-" + textWis.Text + " Cha-" + textCha.Text + " Ini-" + textIniative.Text + " HD-" + textHD.Text + " CMB-" + textCMB.Text + " CMD-" + textCMD.Text + " Feats-" + richFeatBox.Text;
-            listSessions.Items.Add(sessionName);
 
-            Rollforinit.Add(making_a_Iniative(pathObject.Cid, textName.Text, pathObject.Initiative));
+            if (addOrFail)
+            {
+                pathObject.Cid = pathObject.Cid + 1;
+                pathObject.Name = textName.Text;
+                pathObject.Initiative = Convert.ToInt32(textIniative.Text);
 
+                textBox1.Text = Pathlist.Capacity.ToString();
+                Pathlist.Add(making_a_sesstion(pathObject.Cid, textName.Text, textClass.Text, Convert.ToInt32(textHealth.Text), Convert.ToInt32(textAC.Text), Convert.ToInt32(textForitude.Text), Convert.ToInt32(textReflex.Text), Convert.ToInt32(textWill.Text), Convert.ToInt32(textBaseAttack.Text), Convert.ToInt32(textStr.Text), Convert.ToInt32(textDex.Text), Convert.ToInt32(textCon.Text), Convert.ToInt32(textInt.Text), Convert.ToInt32(textWis.Text), Convert.ToInt32(textCha.Text), Convert.ToInt32(textIniative.Text), Convert.ToInt32(textHD.Text), richFeatBox.Text, richSkillsBox.Text));
+
+                textCMB.Text = Globalz.calcCMB(Convert.ToInt32(textBaseAttack.Text), Convert.ToInt32(textStr.Text)).ToString();
+                textCMD.Text = Globalz.calcCMD(Convert.ToInt32(textBaseAttack.Text), Convert.ToInt32(textStr.Text), Convert.ToInt32(textDex.Text)).ToString();
+
+                String sessionName = pathObject.Cid.ToString() + ": Name-" + textName.Text + " Class-" + textClass.Text + " HP-" + textHealth.Text + " AC-" + textAC.Text + " F-" + textForitude.Text + " R-" + textReflex.Text + " W-" + textWill.Text + " Base-" + textBaseAttack.Text + " Str-" + textStr.Text + " Dex-" + textDex.Text + " Con-" + textCon.Text + " Int-" + textInt.Text + " Wis-" + textWis.Text + " Cha-" + textCha.Text + " Ini-" + textIniative.Text + " HD-" + textHD.Text + " CMB-" + textCMB.Text + " CMD-" + textCMD.Text + " Feats-" + richFeatBox.Text;
+                CharacterLists.Add(sessionName);
+
+                listSessions.DataSource = listBox1.DataSource;//Only way to refresh it.
+                listSessions.DataSource = CharacterLists;//Only way to refresh it.
+
+                Rollforinit.Add(making_a_Iniative(pathObject.Cid, textName.Text, pathObject.Initiative));
+            }
+
+        }
+
+        private Boolean checkTextboxes(int p, string p_2, string p_3, string p_4, string p_5, string p_6, string p_7, string p_8, string p_9, string p_10, string p_11, string p_12, string p_13, string p_14, string p_15, string p_16, string p_17, string p_18)
+        {
+
+            string Str = "Initalize";
+            int Num;
+            //bool isNum = int.TryParse(Str, out Num);
+            bool isNum = int.TryParse(Str, out Num);
+            int failed = 0;
+
+            if (!(p_2 != ""))
+            {                MessageBox.Show("Please give a name.");            }
+            if (!(p_3 != ""))
+            { MessageBox.Show("Please give a Class."); failed = 1; }
+
+            if (!(p_4 != ""))
+            { MessageBox.Show("Please give a HP value."); }
+            else
+            {
+                isNum = int.TryParse(p_4, out Num);
+                if (!isNum)
+                { MessageBox.Show("Invalid HP"); failed = 1; }
+            }
+            if (!(p_5 != ""))
+            { MessageBox.Show("Please give a AC."); }
+            else
+            {
+                isNum = int.TryParse(p_5, out Num);
+                if (!isNum)
+                { MessageBox.Show("Invalid AC"); failed = 1; }
+            }
+            if (!(p_6 != ""))
+            { MessageBox.Show("Please give a Fortitude."); }
+            else
+            {
+                isNum = int.TryParse(p_6, out Num);
+                if (!isNum)
+                { MessageBox.Show("Invalid Fortitude"); failed = 1; }
+            }
+            if (!(p_7 != ""))
+            { MessageBox.Show("Please give a Reflex."); }
+            else
+            {
+                isNum = int.TryParse(p_7, out Num);
+                if (!isNum)
+                { MessageBox.Show("Invalid Reflex"); failed = 1; }
+            }
+            if (!(p_8 != ""))
+            { MessageBox.Show("Please give a Will."); }
+            else
+            {
+                isNum = int.TryParse(p_8, out Num);
+                if (!isNum)
+                { MessageBox.Show("Invalid Will"); failed = 1; }
+            }
+            if (!(p_9 != ""))
+            { MessageBox.Show("Please give a Base Attack."); }
+            else
+            {
+                isNum = int.TryParse(p_9, out Num);
+                if (!isNum)
+                { MessageBox.Show("Invalid Base Attack"); failed = 1; }
+            }
+            if (!(p_10 != ""))
+            { MessageBox.Show("Please give a Strength."); }
+            else
+            {
+                isNum = int.TryParse(p_10, out Num);
+                if (!isNum)
+                { MessageBox.Show("Invalid Strength"); failed = 1; }
+            }
+            if (!(p_11 != ""))
+            { MessageBox.Show("Please give a Dexterity."); }
+            else
+            {
+                isNum = int.TryParse(p_11, out Num);
+                if (!isNum)
+                { MessageBox.Show("Invalid Dexterity"); failed = 1; }
+            }
+            if (!(p_12 != ""))
+            { MessageBox.Show("Please give a Constitution."); }
+            else
+            {
+                isNum = int.TryParse(p_12, out Num);
+                if (!isNum)
+                { MessageBox.Show("Invalid Constitution"); failed = 1; }
+            }
+            if (!(p_13 != ""))
+            { MessageBox.Show("Please give a Intellegence."); }
+            else
+            {
+                isNum = int.TryParse(p_13, out Num);
+                if (!isNum)
+                { MessageBox.Show("Invalid Intellegence"); failed = 1; }
+            }
+            if (!(p_14 != ""))
+            { MessageBox.Show("Please give a Wisdom."); }
+            else
+            {
+                isNum = int.TryParse(p_14, out Num);
+                if (!isNum)
+                { MessageBox.Show("Invalid Wisdom"); failed = 1; }
+            }
+            if (!(p_15 != ""))
+            { MessageBox.Show("Please give a Charisma."); }
+            else
+            {
+                isNum = int.TryParse(p_15, out Num);
+                if (!isNum)
+                { MessageBox.Show("Invalid Charisma"); failed = 1; }
+            }
+            if (!(p_16 != ""))
+            { MessageBox.Show("Please give a Initiative amount."); }
+            else
+            {
+                isNum = int.TryParse(p_16, out Num);
+                if (!isNum)
+                { MessageBox.Show("Invalid Initiative"); failed = 1; }
+            }
+
+            if (!(p_16 != ""))
+            { MessageBox.Show("Please give a Hit Dice amount."); }
+            else
+            {
+                isNum = int.TryParse(p_16, out Num);
+                if (!isNum)
+                { MessageBox.Show("Invalid Hit Dice"); failed = 1; }
+            }
+            if (!(p_17 != ""))
+            {                MessageBox.Show("Please give feats.");            }
+            if (!(p_18 != ""))
+            {                MessageBox.Show("Please give skills.");            }
+
+            if (failed == 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+            //throw new NotImplementedException();
         }
 
         private Initiative making_a_Iniative(int sID, string name, int iniative)
@@ -61,7 +211,7 @@ namespace Pathing
             return new_initiative;
         }
 
-        private Session making_a_sesstion(int cid, string name, string Class, Int32 Health, Int32 ArmorClass, Int32 Foritude, Int32 Reflex, Int32 Will, Int32 BaseAttack, Int32 Str, Int32 Dex, Int32 Int, Int32 Wis, Int32 Cha, Int32 Initiative, Int32 HD, string feats)
+        private Session making_a_sesstion(int cid, string name, string Class, Int32 Health, Int32 ArmorClass, Int32 Foritude, Int32 Reflex, Int32 Will, Int32 BaseAttack, Int32 Str, Int32 Dex, Int32 Con, Int32 Int, Int32 Wis, Int32 Cha, Int32 Initiative, Int32 HD, string feats, string skills)
         {
             Session new_Session = new Session();
             new_Session.Cid = cid;
@@ -85,6 +235,7 @@ namespace Pathing
             new_Session.Initiative = Convert.ToInt32(textIniative.Text);
             new_Session.HD = Convert.ToInt32(textHD.Text);
             new_Session.Feats = richFeatBox.Text;
+            new_Session.Skills = richSkillsBox.Text;
 
 
             return new_Session;
@@ -129,6 +280,9 @@ namespace Pathing
             textCMB.Text = Globalz.calcCMB(load_Session.BaseAttack, load_Session.Str).ToString();
             textCMD.Text = Globalz.calcCMD(load_Session.BaseAttack, load_Session.Str, load_Session.Dex).ToString();
 
+            richFeatBox.Text = load_Session.Feats;
+            richSkillsBox.Text = load_Session.Skills;
+
 
 
         }
@@ -143,12 +297,13 @@ namespace Pathing
                 {
                     string line;
                     int counter = 0;
+                    
                     while ((line = file.ReadLine()) != null)
                     {
                         //Console.WriteLine(line);
                         counter++;
 
-                        richConsole.Text = line;
+                        richSkillsBox.Text = line;
 
                         textName.Text = file.ReadLine();
                         textClass.Text = file.ReadLine();
@@ -169,20 +324,24 @@ namespace Pathing
                         textHD.Text = file.ReadLine();
 
                         richFeatBox.Text = file.ReadLine();
+                        richSkillsBox.Text = file.ReadLine();
 
                         //comboBox1.Items.Add(textName.Text);//button1_Click(sender, e);
                         pathObject.Cid = pathObject.Cid + 1;
                         pathObject.Name = textName.Text;
                         pathObject.Initiative = Convert.ToInt32(textIniative.Text);
                         textBox1.Text = pathObject.Cid.ToString();
-                        Pathlist.Add(making_a_sesstion(pathObject.Cid, textName.Text, textClass.Text, Convert.ToInt32(textHealth.Text), Convert.ToInt32(textAC.Text), Convert.ToInt32(textForitude.Text), Convert.ToInt32(textReflex.Text), Convert.ToInt32(textWill.Text), Convert.ToInt32(textBaseAttack.Text), Convert.ToInt32(textStr.Text), Convert.ToInt32(textDex.Text), Convert.ToInt32(textInt.Text), Convert.ToInt32(textWis.Text), Convert.ToInt32(textCha.Text), Convert.ToInt32(textIniative.Text), Convert.ToInt32(textHD.Text), richFeatBox.Text));
+                        Pathlist.Add(making_a_sesstion(pathObject.Cid, textName.Text, textClass.Text, Convert.ToInt32(textHealth.Text), Convert.ToInt32(textAC.Text), Convert.ToInt32(textForitude.Text), Convert.ToInt32(textReflex.Text), Convert.ToInt32(textWill.Text), Convert.ToInt32(textBaseAttack.Text), Convert.ToInt32(textStr.Text), Convert.ToInt32(textDex.Text), Convert.ToInt32(textCon.Text), Convert.ToInt32(textInt.Text), Convert.ToInt32(textWis.Text), Convert.ToInt32(textCha.Text), Convert.ToInt32(textIniative.Text), Convert.ToInt32(textHD.Text), richFeatBox.Text, richSkillsBox.Text));
 
 
                         textCMB.Text = Globalz.calcCMB(Convert.ToInt32(textBaseAttack.Text), Convert.ToInt32(textStr.Text)).ToString();
                         textCMD.Text = Globalz.calcCMD(Convert.ToInt32(textBaseAttack.Text), Convert.ToInt32(textStr.Text), Convert.ToInt32(textDex.Text)).ToString();
 
                         String sessionName = pathObject.Cid.ToString() + ": Name-" + textName.Text + " AC-" + textClass.Text + " HP-" + textHealth.Text + " AC-" + textAC.Text + " F-" + textForitude.Text + " R-" + textReflex.Text + " W-" + textWill.Text + " Base-" + textBaseAttack.Text + " Str-" + textStr.Text + " Dex-" + textDex.Text + " Con-" + textCon.Text + " Int-" + textInt.Text + " Wis-" + textWis.Text + " Cha-" + textCha.Text + " Ini-" + textIniative.Text + " HD-" + textHD.Text + " CMB-" + textCMB.Text + " CMD-" + textCMD.Text;
-                        listSessions.Items.Add(sessionName);
+                        //listSessions.Items.Add(sessionName);
+                        CharacterLists.Add(sessionName);
+                        listSessions.DataSource = listBox1.DataSource;
+                        listSessions.DataSource = CharacterLists;
 
                         Rollforinit.Add(making_a_Iniative(pathObject.Cid, textName.Text, pathObject.Initiative));
 
@@ -249,6 +408,7 @@ namespace Pathing
                         file.WriteLine(save_Session.Initiative);
                         file.WriteLine(save_Session.HD);
                         file.WriteLine(save_Session.Feats);
+                        file.WriteLine(save_Session.Skills);
                     }
                     file.Close();
                 }
@@ -266,16 +426,10 @@ namespace Pathing
             Random random = new Random();
             int randomNumber = random.Next(1, 21);
             string RanNumText = randomNumber.ToString();
-            richConsole.Text += " " +RanNumText;
+            richConsoleBox.Text += " " +RanNumText;
         }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-            textBox3.Text = Globalz.GiveMe5().ToString();
-            richConsole.Clear();
-        }
-
+            //textBox3.Text = Globalz.GiveMe5().ToString();
+            //richConsole.Clear();
         private void button4_Click(object sender, EventArgs e)
         {
             //Rollforinit.Sort
@@ -391,17 +545,17 @@ namespace Pathing
         private void D12button_Click(object sender, EventArgs e)
         {
             Random random = new Random();
-            int randomNumber = random.Next(1, 21);
+            int randomNumber = random.Next(1, 13);
             string RanNumText = randomNumber.ToString();
-            richConsole.Text += " " +RanNumText;
+            richConsoleBox.Text += " " +RanNumText;
         }
 
         private void D10button_Click(object sender, EventArgs e)
         {
             Random random = new Random();
-            int randomNumber = random.Next(1, 13);
+            int randomNumber = random.Next(1, 11);
             string RanNumText = randomNumber.ToString();
-            richConsole.Text += " " +RanNumText;
+            richConsoleBox.Text += " " +RanNumText;
         }
 
         private void D8button_Click(object sender, EventArgs e)
@@ -409,7 +563,7 @@ namespace Pathing
             Random random = new Random();
             int randomNumber = random.Next(1, 9);
             string RanNumText = randomNumber.ToString();
-            richConsole.Text += " " +RanNumText;
+            richConsoleBox.Text += " " +RanNumText;
         }
 
         private void D6button_Click(object sender, EventArgs e)
@@ -417,7 +571,7 @@ namespace Pathing
             Random random = new Random();
             int randomNumber = random.Next(1, 7);
             string RanNumText = randomNumber.ToString();
-            richConsole.Text += " " +RanNumText;
+            richConsoleBox.Text += " " +RanNumText;
         }
 
         private void D4button_Click(object sender, EventArgs e)
@@ -425,7 +579,7 @@ namespace Pathing
             Random random = new Random();
             int randomNumber = random.Next(1, 5);
             string RanNumText = randomNumber.ToString();
-            richConsole.Text += " " +RanNumText;
+            richConsoleBox.Text += " " +RanNumText;
         }
 
         private void D3button_Click(object sender, EventArgs e)
@@ -433,7 +587,7 @@ namespace Pathing
             Random random = new Random();
             int randomNumber = random.Next(1, 4);
             string RanNumText = randomNumber.ToString();
-            richConsole.Text += " " +RanNumText;
+            richConsoleBox.Text += " " +RanNumText;
         }
 
         private void Addbutton_Click(object sender, EventArgs e)
@@ -503,18 +657,17 @@ namespace Pathing
 
             Session edit_Session = new Session();
 
-            edit_Session = making_a_sesstion(pathObject.Cid, textName.Text, textClass.Text, Convert.ToInt32(textHealth.Text), Convert.ToInt32(textAC.Text), Convert.ToInt32(textForitude.Text), Convert.ToInt32(textReflex.Text), Convert.ToInt32(textWill.Text), Convert.ToInt32(textBaseAttack.Text), Convert.ToInt32(textStr.Text), Convert.ToInt32(textDex.Text), Convert.ToInt32(textInt.Text), Convert.ToInt32(textWis.Text), Convert.ToInt32(textCha.Text), Convert.ToInt32(textIniative.Text), Convert.ToInt32(textHD.Text), richFeatBox.Text);
-            richConsole.Text = Pathlist.Capacity.ToString();
+            edit_Session = making_a_sesstion(pathObject.Cid, textName.Text, textClass.Text, Convert.ToInt32(textHealth.Text), Convert.ToInt32(textAC.Text), Convert.ToInt32(textForitude.Text), Convert.ToInt32(textReflex.Text), Convert.ToInt32(textWill.Text), Convert.ToInt32(textBaseAttack.Text), Convert.ToInt32(textStr.Text), Convert.ToInt32(textDex.Text), Convert.ToInt32(textCon.Text), Convert.ToInt32(textInt.Text), Convert.ToInt32(textWis.Text), Convert.ToInt32(textCha.Text), Convert.ToInt32(textIniative.Text), Convert.ToInt32(textHD.Text), richFeatBox.Text, richSkillsBox.Text);
+            //richSkillsBox.Text = Pathlist.Capacity.ToString();
 
             if (listSessions.SelectedIndex >= 0 && listSessions.SelectedIndex <= Pathlist.Capacity)
             {
                 int indextChanging = listSessions.SelectedIndex;
-                Pathlist[listSessions.SelectedIndex] = making_a_sesstion(pathObject.Cid, textName.Text, textClass.Text, Convert.ToInt32(textHealth.Text), Convert.ToInt32(textAC.Text), Convert.ToInt32(textForitude.Text), Convert.ToInt32(textReflex.Text), Convert.ToInt32(textWill.Text), Convert.ToInt32(textBaseAttack.Text), Convert.ToInt32(textStr.Text), Convert.ToInt32(textDex.Text), Convert.ToInt32(textInt.Text), Convert.ToInt32(textWis.Text), Convert.ToInt32(textCha.Text), Convert.ToInt32(textIniative.Text), Convert.ToInt32(textHD.Text), richFeatBox.Text);
-                //listSessions[indextChanging] = (pathObject.Cid, textName.Text, textClass.Text, Convert.ToInt32(textHealth.Text), Convert.ToInt32(textAC.Text), Convert.ToInt32(textForitude.Text), Convert.ToInt32(textReflex.Text), Convert.ToInt32(textWill.Text), Convert.ToInt32(textBaseAttack.Text), Convert.ToInt32(textStr.Text), Convert.ToInt32(textDex.Text), Convert.ToInt32(textInt.Text), Convert.ToInt32(textWis.Text), Convert.ToInt32(textCha.Text), Convert.ToInt32(textIniative.Text), Convert.ToInt32(textHD.Text), richFeatBox.Text);
-                //listSessions.Items.
-                //listSessions.SelectedValue = "lololol";
-                //textBox1.Text = listSessions.SelectedItem.ToString();
-                //List boxes are not easily edited. I could simply just make a clone of the listbox with the element I wanted edited already edited, and then place that as the new list box, but I am sure there is an easier way.
+                Pathlist[listSessions.SelectedIndex] = making_a_sesstion(pathObject.Cid, textName.Text, textClass.Text, Convert.ToInt32(textHealth.Text), Convert.ToInt32(textAC.Text), Convert.ToInt32(textForitude.Text), Convert.ToInt32(textReflex.Text), Convert.ToInt32(textWill.Text), Convert.ToInt32(textBaseAttack.Text), Convert.ToInt32(textStr.Text), Convert.ToInt32(textDex.Text), Convert.ToInt32(textCon.Text), Convert.ToInt32(textInt.Text), Convert.ToInt32(textWis.Text), Convert.ToInt32(textCha.Text), Convert.ToInt32(textIniative.Text), Convert.ToInt32(textHD.Text), richFeatBox.Text, richSkillsBox.Text);
+                CharacterLists[indextChanging] = pathObject.Cid.ToString() + ": Name-" + textName.Text + " AC-" + textClass.Text + " HP-" + textHealth.Text + " AC-" + textAC.Text + " F-" + textForitude.Text + " R-" + textReflex.Text + " W-" + textWill.Text + " Base-" + textBaseAttack.Text + " Str-" + textStr.Text + " Dex-" + textDex.Text + " Con-" + textCon.Text + " Int-" + textInt.Text + " Wis-" + textWis.Text + " Cha-" + textCha.Text + " Ini-" + textIniative.Text + " HD-" + textHD.Text + " CMB-" + textCMB.Text + " CMD-" + textCMD.Text + " Feats-" + richFeatBox.Text;
+
+                listSessions.DataSource = listBox1.DataSource;//Only way to refresh the list box.
+                listSessions.DataSource = CharacterLists;//Only way to refresh the list box.
             }
             else
             {
@@ -531,11 +684,33 @@ namespace Pathing
             //temp.Items.Add(sessionName);
 
             //temp.Items.Add()
-
+            listSessions.DataSource = listBox1.DataSource;//Only way to refresh it.
+            listSessions.DataSource = CharacterLists;//Only way to refresh it.
             
 
             Rollforinit.Add(making_a_Iniative(pathObject.Cid, textName.Text, pathObject.Initiative));
 
+        }
+
+        private void newToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure you want to make a new file?.", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) ==
+    DialogResult.Yes)
+            {
+                pathObject = new Session();
+                initiativeObject = new Initiative();
+
+                Pathlist = new List<Session>();
+                Rollforinit = new List<Initiative>();
+
+                SortedList = new List<Initiative>();
+                CharacterLists = new List<String>();
+
+
+                listSessions.DataSource = CharacterLists;
+                listBox1.DataSource = SortedList;
+
+            }
         }
 
 

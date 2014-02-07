@@ -32,6 +32,7 @@ namespace Pathing
         public Int32 HD { get; set; }
 
         public String Feats { get; set; }
+        public String Skills { get; set; }
         
 
     }

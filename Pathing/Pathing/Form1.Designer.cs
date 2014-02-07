@@ -77,10 +77,9 @@
             this.saveSessions = new System.Windows.Forms.SaveFileDialog();
             this.D20button = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.button4 = new System.Windows.Forms.Button();
-            this.richConsole = new System.Windows.Forms.RichTextBox();
+            this.richSkillsBox = new System.Windows.Forms.RichTextBox();
             this.D12button = new System.Windows.Forms.Button();
             this.D10button = new System.Windows.Forms.Button();
             this.D8button = new System.Windows.Forms.Button();
@@ -96,6 +95,8 @@
             this.richFeatBox = new System.Windows.Forms.RichTextBox();
             this.clearButton = new System.Windows.Forms.Button();
             this.editButton = new System.Windows.Forms.Button();
+            this.newToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.richConsoleBox = new System.Windows.Forms.RichTextBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -462,6 +463,7 @@
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newToolStripMenuItem1,
             this.openToolStripMenuItem,
             this.saveToolStripMenuItem});
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
@@ -471,14 +473,14 @@
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
@@ -498,20 +500,10 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(730, 481);
+            this.textBox3.Location = new System.Drawing.Point(329, 219);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(62, 20);
             this.textBox3.TabIndex = 51;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(730, 504);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(62, 23);
-            this.button3.TabIndex = 50;
-            this.button3.Text = "GiveMe5";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // listBox1
             // 
@@ -531,13 +523,13 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
-            // richConsole
+            // richSkillsBox
             // 
-            this.richConsole.Location = new System.Drawing.Point(498, 356);
-            this.richConsole.Name = "richConsole";
-            this.richConsole.Size = new System.Drawing.Size(226, 252);
-            this.richConsole.TabIndex = 54;
-            this.richConsole.Text = "";
+            this.richSkillsBox.Location = new System.Drawing.Point(498, 356);
+            this.richSkillsBox.Name = "richSkillsBox";
+            this.richSkillsBox.Size = new System.Drawing.Size(294, 252);
+            this.richSkillsBox.TabIndex = 54;
+            this.richSkillsBox.Text = "";
             // 
             // D12button
             // 
@@ -655,9 +647,9 @@
             // 
             // richFeatBox
             // 
-            this.richFeatBox.Location = new System.Drawing.Point(118, 358);
+            this.richFeatBox.Location = new System.Drawing.Point(198, 358);
             this.richFeatBox.Name = "richFeatBox";
-            this.richFeatBox.Size = new System.Drawing.Size(226, 252);
+            this.richFeatBox.Size = new System.Drawing.Size(294, 252);
             this.richFeatBox.TabIndex = 67;
             this.richFeatBox.Text = "";
             // 
@@ -673,7 +665,7 @@
             // 
             // editButton
             // 
-            this.editButton.Location = new System.Drawing.Point(350, 358);
+            this.editButton.Location = new System.Drawing.Point(55, 411);
             this.editButton.Name = "editButton";
             this.editButton.Size = new System.Drawing.Size(75, 23);
             this.editButton.TabIndex = 69;
@@ -681,11 +673,27 @@
             this.editButton.UseVisualStyleBackColor = true;
             this.editButton.Click += new System.EventHandler(this.editButton_Click);
             // 
+            // newToolStripMenuItem1
+            // 
+            this.newToolStripMenuItem1.Name = "newToolStripMenuItem1";
+            this.newToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.newToolStripMenuItem1.Text = "New";
+            this.newToolStripMenuItem1.Click += new System.EventHandler(this.newToolStripMenuItem1_Click);
+            // 
+            // richConsoleBox
+            // 
+            this.richConsoleBox.Location = new System.Drawing.Point(58, 440);
+            this.richConsoleBox.Name = "richConsoleBox";
+            this.richConsoleBox.Size = new System.Drawing.Size(72, 168);
+            this.richConsoleBox.TabIndex = 70;
+            this.richConsoleBox.Text = "";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(804, 614);
+            this.Controls.Add(this.richConsoleBox);
             this.Controls.Add(this.editButton);
             this.Controls.Add(this.clearButton);
             this.Controls.Add(this.richFeatBox);
@@ -701,11 +709,10 @@
             this.Controls.Add(this.D8button);
             this.Controls.Add(this.D10button);
             this.Controls.Add(this.D12button);
-            this.Controls.Add(this.richConsole);
+            this.Controls.Add(this.richSkillsBox);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.button3);
             this.Controls.Add(this.D20button);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.textCMB);
@@ -810,10 +817,9 @@
         private System.Windows.Forms.SaveFileDialog saveSessions;
         private System.Windows.Forms.Button D20button;
         private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.RichTextBox richConsole;
+        private System.Windows.Forms.RichTextBox richSkillsBox;
         private System.Windows.Forms.Button D12button;
         private System.Windows.Forms.Button D10button;
         private System.Windows.Forms.Button D8button;
@@ -829,6 +835,8 @@
         private System.Windows.Forms.RichTextBox richFeatBox;
         private System.Windows.Forms.Button clearButton;
         private System.Windows.Forms.Button editButton;
+        private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem1;
+        private System.Windows.Forms.RichTextBox richConsoleBox;
     }
 }
 
